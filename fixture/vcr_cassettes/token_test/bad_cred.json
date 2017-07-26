@@ -14,7 +14,7 @@
       "url": "https://tartan.plaid.com/item/public_token/exchange"
     },
     "response": {
-      "body": "{\n  \"code\": 1102,\n  \"message\": \"secret or client_id invalid\",\n  \"resolve\": \"The Client ID does not exist or the Secret does not match the Client ID you provided.\"\n}",
+      "body": "{\n \"error_type\": \"ITEM_ERROR\",\n  \"error_code\": \"INVALID_CREDENTIALS\",\n  \"error_message\": \"secret or client_id invalid\",\n  \"display_message\": \"The Client ID does not exist or the Secret does not match the Client ID you provided.\"\n}",
       "headers": {
         "Content-Type": "application/json; charset=utf-8",
         "Date": "Thu, 29 Sep 2016 20:22:56 GMT",

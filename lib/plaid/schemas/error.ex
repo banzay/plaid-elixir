@@ -1,4 +1,4 @@
 defmodule Plaid.Error do
   @moduledoc false
-  defstruct [:access_token, :code, :message, :resolve]
+  defstruct [:error_type, :error_code, :error_message, :display_message]
 end
