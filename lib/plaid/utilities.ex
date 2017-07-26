@@ -88,7 +88,7 @@ defmodule Plaid.Utilities do
   defp decode_response(body, schema) do
     case schema do
       :token ->
-        Poison.decode!(body, as: %Token{}) |> Map.get(:access_token)
+        Poison.decode!(body, as: %Token{}) |> Map.take([:access_token, :item_id, :request_id])
       :connect ->
         case Poison.decode!(body) do
           %{"access_token" => _, "accounts" => _, "transactions" => _} ->

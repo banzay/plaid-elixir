@@ -13,7 +13,7 @@ defmodule Plaid.Token do
 
   alias Plaid.Utilities
 
-  defstruct [:access_token, :sandbox]
+  defstruct [:access_token, :item_id, :request_id, :sandbox]
 
   @endpoint "item/public_token/exchange"
 
