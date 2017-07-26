@@ -12,8 +12,10 @@ defmodule Plaid.TokenTest do
   @tag exchange: true
   test "Exchange token with success, string params, no credentials" do
     use_cassette "token_test/token" do
-      {:ok, access_token} = Plaid.Token.exchange("test,bofa,connected")
+      {:ok, %{access_token: access_token, item_id: item_id, request_id: request_id}} = Plaid.Token.exchange("test,bofa,connected")
       assert access_token == "test_bofa"
+      assert item_id == "item_id"
+      assert request_id == "request_id"
     end
   end
 
@@ -27,8 +29,10 @@ defmodule Plaid.TokenTest do
   @tag exchange: true
   test "Exchange token with success, string params, credentials", %{cred: cred} do
     use_cassette "token_test/cred" do
-      {:ok, access_token} = Plaid.Token.exchange("test,bofa,connected", cred)
+      {:ok, %{access_token: access_token, item_id: item_id, request_id: request_id}} = Plaid.Token.exchange("test,bofa,connected", cred)
       assert access_token == "test_bofa"
+      assert item_id == "item_id"
+      assert request_id == "request_id"
     end
   end
 

@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Test keys
-config :plaid, client_id: "test_id"
-config :plaid, secret: "test_secret"
-config :plaid, root_uri: "https://tartan.plaid.com/"
-config :plaid, httpoison_options: [timeout: 10000, recv_timeout: 10000]
+config :plaid_elixir, client_id: "test_id"
+config :plaid_elixir, secret: "test_secret"
+config :plaid_elixir, root_uri: "https://tartan.plaid.com/"
+config :plaid_elixir, httpoison_options: [timeout: 10000, recv_timeout: 10000]
 
 config :exvcr, [
   vcr_cassette_library_dir: "fixture/vcr_cassettes",
