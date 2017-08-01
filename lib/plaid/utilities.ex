@@ -165,9 +165,9 @@ defmodule Plaid.Utilities do
     Poison.decode!(body, as: %Connect{
       accounts: [%Account{
         balance: %AccountBalance{},
-        }]
-      },
-      numbers: [%AccountNumber{}])
+      }],
+      numbers: [%AccountNumber{}]
+    })
   end
 
   defp map_mfa_question(body) do
