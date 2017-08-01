@@ -30,7 +30,7 @@ defmodule Plaid.Connect do
 
   alias Plaid.Utilities
 
-  defstruct [:accounts, :access_token, :transactions]
+  defstruct [:accounts, :access_token, :transactions, :numbers]
 
   @endpoint "auth"
 
