@@ -32,7 +32,7 @@ defmodule Plaid.Connect do
 
   defstruct [:accounts, :access_token, :transactions]
 
-  @endpoint "connect"
+  @endpoint "auth"
 
   @doc """
   Adds a Connect user.
