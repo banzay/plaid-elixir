@@ -17,6 +17,8 @@ defmodule Plaid.Token do
 
   @endpoint "item/public_token/exchange"
 
+  @create_public_token_endpoint "item/public_token/create"
+
   @doc """
   Exchanges a public token for an access token.
 
@@ -55,6 +57,13 @@ defmodule Plaid.Token do
 
     Plaid.make_request_with_cred(:post, @endpoint, cred || Plaid.config_or_env_cred(), params)
     |> Utilities.handle_plaid_response(:token)
+  end
+
+  @spec create_public_token(binary) :: binary
+  def create_public_token(access_token, cred \\ nil) do
+    params = %{access_token: access_token}
+    Plaid.make_request_with_cred(:post, @create_public_token_endpoint, cred || Plaid.config_or_env_cred(), params)
+    |> Utilities.handle_plaid_response(:public_token)
   end
 
 end

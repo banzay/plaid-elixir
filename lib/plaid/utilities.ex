@@ -88,6 +88,9 @@ defmodule Plaid.Utilities do
   # and HTTP response body format.
   defp decode_response(body, schema) do
     case schema do
+      :public_token ->
+        %{"public_token" => public_token} = Poison.decode!(body)
+        %{public_token: public_token}
       :token ->
         Poison.decode!(body, as: %Token{}) |> Map.take([:access_token, :item_id, :request_id])
       :connect ->
