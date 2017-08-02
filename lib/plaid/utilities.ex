@@ -7,6 +7,7 @@ defmodule Plaid.Utilities do
               Message, Transaction, TransactionType, Token}
   alias Plaid.Account.Balance, as: AccountBalance
   alias Plaid.Account.Meta, as: AccountMeta
+  alias Plaid.Account.Number, as: AccountNumber
   alias Plaid.Institutions.Credentials, as: InstitutionsCredentials
   alias Plaid.LongTailInstitutions.Fields, as: LongTailInstitutionsFields
   alias Plaid.LongTailInstitutions.Products, as: LongTailInstitutionsProducts
@@ -93,7 +94,7 @@ defmodule Plaid.Utilities do
         case Poison.decode!(body) do
           %{"access_token" => _, "accounts" => _, "transactions" => _} ->
             map_transactions(body)
-          %{"access_token" => _, "accounts" => _} ->
+          %{"accounts" => _, "numbers" => _} ->
             map_accounts(body)
           %{"access_token" => _, "mfa" => [%{"question" => _}|_], "type" => _} ->
             map_mfa_question(body)
@@ -164,8 +165,9 @@ defmodule Plaid.Utilities do
     Poison.decode!(body, as: %Connect{
       accounts: [%Account{
         balance: %AccountBalance{},
-        meta: %AccountMeta{}}]
-      })
+      }],
+      numbers: [%AccountNumber{}]
+    })
   end
 
   defp map_mfa_question(body) do

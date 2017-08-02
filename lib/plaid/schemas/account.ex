@@ -12,3 +12,8 @@ defmodule Plaid.Account.Meta do
   @moduledoc false
   defstruct [:limit, :name, :number, :official_name]
 end
+
+defmodule Plaid.Account.Number do
+  @moduledoc false
+  defstruct [:account, :account_id, :routing, :wire_routing]
+end
