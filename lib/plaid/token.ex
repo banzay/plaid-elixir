@@ -19,6 +19,8 @@ defmodule Plaid.Token do
 
   @create_public_token_endpoint "item/public_token/create"
 
+  @create_stripe_bank_account_token_endpoint "processor/stripe/bank_account_token/create"
+
   @doc """
   Exchanges a public token for an access token.
 
@@ -66,4 +68,14 @@ defmodule Plaid.Token do
     |> Utilities.handle_plaid_response(:public_token)
   end
 
+  @spec create_stripe_bank_account_token(binary, binary, map) :: {atom, binary | map}
+  def create_stripe_bank_account_token(access_token, account_id, cred \\ nil) do
+    params = %{access_token: access_token, account_id: account_id}
+    Plaid.make_request_with_cred(
+      :post,
+      @create_stripe_bank_account_token_endpoint,
+      cred || Plaid.config_or_env_cred(), params
+    )
+    |> Utilities.handle_plaid_response(:stripe_bank_account_token)
+  end
 end
