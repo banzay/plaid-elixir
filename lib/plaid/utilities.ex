@@ -4,7 +4,7 @@ defmodule Plaid.Utilities do
   """
 
   alias Plaid.{Account, Connect, Error, Institutions, LongTailInstitutions, Mfa,
-              Message, Transaction, TransactionType, Token}
+              Message, Transaction, TransactionType, Token, StripeBankAccountToken}
   alias Plaid.Account.Balance, as: AccountBalance
   alias Plaid.Account.Meta, as: AccountMeta
   alias Plaid.Account.Number, as: AccountNumber
@@ -88,6 +88,8 @@ defmodule Plaid.Utilities do
   # and HTTP response body format.
   defp decode_response(body, schema) do
     case schema do
+      :stripe_bank_account_token ->
+        Poison.decode!(body, as: %StripeBankAccountToken{})
       :public_token ->
         %{"public_token" => public_token} = Poison.decode!(body)
         %{public_token: public_token}
